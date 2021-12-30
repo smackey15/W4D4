@@ -1,15 +1,13 @@
 
 
 def first_anagram?(str1, str2)
-    anagrams = []
-    (0...str1.length - 1).each do |i|
-        (i...str1.length).each do |j|
-            anagrams << str1[i..j] if str1[i..j] == str1[i..j]
-        end
+    str1_array = str1.chars
+    str1_array.permutation.each do |perm|
+        return true if perm == str2
     end
-
+    false
 end
 
 
-anagram?("gizmo", "sally")    #=> false
-anagram?("elvis", "lives")    #=> true
+p first_anagram?("gizmo", "sally")    #=> false
+p first_anagram?("elvis", "lives")    #=> true

@@ -44,8 +44,22 @@ def min(array) #time complexity O(n)
     min
 end
 
-  list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-    p min(list) # =>  -5
+  #list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
+  #  p min(list) # =>  -5
 
 
-
+def largest_contiguous_subsum(list) #time complexity: O(n^2)
+    sub_array = []
+    (0...list.length).each do |i| #O(n^2)
+        (i...list.length).each do |j|
+            sub_array << list[i..j]
+        end
+    end
+    sum = sub_array.map {|array| array.sum} #O(n)
+    sum.max #O(n)
+end
+    list = [5, 3, -7] # => 8
+    list = [2, 3, -6, 7, -6, 7] # => 8
+    list = [-5, -1, -3]# => -1
+    
+    p largest_contiguous_subsum(list)

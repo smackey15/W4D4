@@ -64,12 +64,15 @@ end
 # p largest_contiguous_subsum([2, 3, -6, 7, -6, 7]) # => 8
 # p largest_contiguous_subsum([5, 3, -7]) # => 8
 
-def subsum(list)
-    largest = list.first #2
-    current_sum = list.first #2
-    list.drop(1).each do |num| #3
-        current_sum = current_sum + num # 5
+def subsum(list) #time complexity: O(n)
+    largest = list.first #5 #O(1)
+    current_sum = list.first #-1 #O(1)
+    list.drop(1).each do |num| #7 #O(n)
+        current_sum = 0 if current_sum < 0#O(1)
+        current_sum = current_sum + num #6#O(1)
+        largest = current_sum if current_sum > largest#O(1)
     end
+    largest
 end
 
 p subsum([-5, -1, -3]) # => -1

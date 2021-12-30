@@ -48,11 +48,11 @@ end
 #p min(list) # =>  -5
 
 
-def largest_contiguous_subsum(list) #time complexity: O(n^2)
+def largest_contiguous_subsum(list) #time complexity: O(n^3)
     sub_array = []
     (0...list.length).each do |i| #O(n^2)
         (i...list.length).each do |j|
-            sub_array << list[i..j]
+            sub_array << list[i..j] #O(n)
         end
     end
     sum = sub_array.map {|array| array.sum} #O(n)
@@ -65,13 +65,11 @@ end
 # p largest_contiguous_subsum([5, 3, -7]) # => 8
 
 def subsum(list)
-    current_sum = list.first
-    (0...list.length).each do |i|
-        current_sum = list.first + list[i]
+    largest = list.first #2
+    current_sum = list.first #2
+    list.drop(1).each do |num| #3
+        current_sum = current_sum + num # 5
     end
-
-
-
 end
 
 p subsum([-5, -1, -3]) # => -1
